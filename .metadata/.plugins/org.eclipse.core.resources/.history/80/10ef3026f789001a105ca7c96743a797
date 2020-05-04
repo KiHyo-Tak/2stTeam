@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" %>
+<%  response.setStatus(404); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<jsp:include page="../main/header.jsp" />
+	<div>
+		<p>죄송합니다. 해당 페이지는 점검중입니다</p>
+		<button onclick="histroy.go(-1)">뒤로가기</button>
+		<button onclick="main.do">메인페이지로 가기</button>
+	</div>
+	<jsp:include page="../main/footer.jsp" />
+</body>
+</html>

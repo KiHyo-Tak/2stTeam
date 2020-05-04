@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){	
+		
+	});
+</script>
+<style>
+	#activityReserveList {
+		width:700px;
+		height:669px;
+		margin:30px auto;
+	}
+	#activityReserveList h2 {
+		margin-bottom:20px;
+	}
+	#activityReserveList #date {
+		margin-top:20px;
+	}
+	#activityReserveList #date tr th {
+		border-bottom:1px solid lightgray;
+	}
+	#activityReserveList #date tr td {
+		border-bottom:1px solid lightgray;
+	}
+	#activityReserveList #date tr td {
+		height:40px;
+		line-height:40px;
+	}
+	#activityReserveList #date tr th, td {
+		width:130px;
+		text-align:center;
+	}
+	#activityReserveList #date tr td button {
+		width:100px;
+		height:30px;
+		line-height:30px;
+		cursor:pointer;
+		outline:none;
+	}
+	#activityReserveList #btn {
+		width:100px;
+		height:30px;
+		line-height:30px;
+		margin:30px;
+		margin-left:550px;
+		background-color:black;
+		color:white;
+	}
+</style>
+<body>
+<jsp:include page="../main/header.jsp"/>
+	<div id="activityReserveList">
+		<h2>예약자 확인</h2>
+		<table id="date">
+			<tr>
+				<th>예약자명</th>
+				<th>생년월일</th>
+				<th>연락처</th>
+				<th>예약날짜</th>
+			</tr>
+			<c:if test='${reserve == "[]"}'>
+				<tr>
+					<td colspan="4">
+						예약인원이 없습니다
+					</td>
+				</tr>
+			</c:if>
+			<c:if test='${reserve != "[]" }'>
+				<c:forEach items="${reserve }" var="list">
+					<tr>
+						<td>${list.mName }</td>
+						<td>
+							<fmt:formatDate value="${list.mBirth }" pattern="yyyy-MM-dd"/>
+						</td>
+						<td>
+							${list.mPhone }
+						</td>
+						<td>
+							<fmt:formatDate value="${list.arRdate }" pattern="yyyy-MM-dd"/>
+						</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</table>
+		<button id="btn" onclick="history.go(-1)">뒤로가기</button>
+	</div>
+<jsp:include page="../main/footer.jsp"/>
+</body>
+</html>
